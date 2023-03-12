@@ -9,7 +9,7 @@ class OnboardingScreen extends StatefulWidget {
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
-}
+} //mona ///
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   PageController pageController = PageController(keepPage: false);
@@ -52,7 +52,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             SizedBox(
               height: context.propHeight(400),
               child: PageView(
-                
                 controller: pageController,
                 children: const [
                   OnboardingPage(
@@ -76,7 +75,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 40,),
+            SizedBox(
+              height: 40,
+            ),
             Container(
               margin: const EdgeInsets.only(bottom: 50),
               child: Row(
@@ -103,7 +104,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ],
               ),
             ),
-          Spacer(),  OnboardingButton(index: index.toInt(),
+            Spacer(),
+            OnboardingButton(
+                index: index.toInt(),
                 pageController: pageController,
                 saveFun: (double index) {
                   setState(() {
@@ -111,7 +114,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     print(index);
                   });
                 }),
-         SizedBox(height: 40,)
+            SizedBox(
+              height: 40,
+            )
           ],
         ),
       ),
@@ -123,7 +128,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 class OnboardingButton extends StatelessWidget {
   final int index;
   OnboardingButton(
-      {Key? key, required this.pageController, required this.saveFun, required this.index})
+      {Key? key,
+      required this.pageController,
+      required this.saveFun,
+      required this.index})
       : super(key: key);
   final PageController pageController;
   void Function(double index) saveFun;
@@ -131,32 +139,33 @@ class OnboardingButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20),
-      child: CustomButton(width: context.propWidth(210),
+      child: CustomButton(
+        width: context.propWidth(210),
         onPressed: () {
-          if (index!=2) {
-  saveFun(index+1);
-  pageController.animateToPage(index+1,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeIn);
-      
-      pageController.notifyListeners();
-}
-        }
-        ,
-        title:  'Next',
+          if (index != 2) {
+            saveFun(index + 1);
+            pageController.animateToPage(index + 1,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeIn);
+
+            pageController.notifyListeners();
+          }
+        },
+        title: 'Next',
       ),
     );
   }
 }
 
 class CustomButton extends StatelessWidget {
-
   const CustomButton({
     Key? key,
     required this.title,
     required this.onPressed,
     this.backgroundColor,
-    this.raduis, this.width, this.height,
+    this.raduis,
+    this.width,
+    this.height,
   }) : super(key: key);
   final String title;
   final Function() onPressed;
@@ -172,16 +181,14 @@ class CustomButton extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: context.propHeight(15)),
       minWidth: width ?? double.infinity,
       height: height,
-
-        color: backgroundColor ?? AppColors.primaryColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(raduis ?? 16),
-        ),
-      
+      color: backgroundColor ?? AppColors.primaryColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(raduis ?? 16),
+      ),
       onPressed: onPressed,
       child: Text(
         title,
-      style: context.textTheme.button?.copyWith(fontWeight: FontWeight.w500),
+        style: context.textTheme.button?.copyWith(fontWeight: FontWeight.w500),
       ),
     );
   }
